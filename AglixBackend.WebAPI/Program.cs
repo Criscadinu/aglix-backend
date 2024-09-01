@@ -1,5 +1,7 @@
 using AglixBackend.Domain.Interfaces;
 using AglixBackend.Infrastructure.Data;
+using AglixBackend.Application.Interfaces;
+using AglixBackend.Application.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IAgileRepository, AgileRepository>();
+builder.Services.AddScoped<IAgileService, AgileService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AglixBackend.Application\AglixBackend.Application.csproj" />
     <ProjectReference Include="..\AglixBackend.Domain\AglixBackend.Domain.csproj" />
     <ProjectReference Include="..\AglixBackend.Infrastructure\AglixBackend.Infrastructure.csproj" />
   </ItemGroup>
