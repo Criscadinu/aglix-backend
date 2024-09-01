@@ -1,5 +1,6 @@
 ﻿using AglixBackend.Domain.Entities;
 using AglixBackend.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AglixBackend.Infrastructure.Data
 {
@@ -15,29 +16,36 @@ namespace AglixBackend.Infrastructure.Data
 
         public ApplicationDbContext Context { get; }
 
-        public Task AddAsync(Agile agile)
+        public async Task AddAsync(Agile agile)
         {
-            throw new NotImplementedException();
+            _context.Agile.Add(agile);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var agile = await _context.Agile.FindAsync(id);
+            if (agile != null)
+            {
+                _context.Agile.Remove(agile);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task<IEnumerable<Agile>> GetAllAsync()
+        public async Task<IEnumerable<Agile>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Agile.ToListAsync();
         }
 
-        public Task<Agile> GetByIdAsync(int id)
+        public async Task<Agile> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Agile.FindAsync(id);
         }
 
-        public Task UpdateAsync(Agile agile)
+        public async Task UpdateAsync(Agile agile)
         {
-            throw new NotImplementedException();
+            _context.Agile.Update(agile);
+            await _context.SaveChangesAsync();
         }
     }
 }
