@@ -1,6 +1,6 @@
 ﻿namespace AglixBackend.Domain.Entities
 {
-    internal class AgileElement
+    public class AgileElement
     {
         public int Id { get; set; }
         public string Name { get; set; } // e.g., Standups, Retrospectives
