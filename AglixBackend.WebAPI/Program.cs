@@ -3,6 +3,7 @@ using AglixBackend.Infrastructure.Data;
 using AglixBackend.Application.Interfaces;
 using AglixBackend.Application.Services;
 using Microsoft.EntityFrameworkCore;
+using AglixBackend.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IAgileRepository, AgileRepository>();
 builder.Services.AddScoped<IAgileService, AgileService>();
+builder.Services.AddScoped<IAgileImplementationService, AgileImplementationService>();
+builder.Services.AddScoped<IAgileImplementationRepository, AgileImplementationRepository>();
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

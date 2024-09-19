@@ -11,7 +11,7 @@ namespace AglixBackend.Infrastructure.Data
 
         public DbSet<Agile> Agile { get; set; }
         public DbSet<AgileImplementation> AgileImplementation { get; set; }
-        public DbSet<AgileElement> AgileElement { get; set; }
+        public DbSet<AgileImplementationElement> AgileElement { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

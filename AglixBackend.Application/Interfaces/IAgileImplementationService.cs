@@ -1,8 +1,8 @@
 ﻿using AglixBackend.Domain.Entities;
 
-namespace AglixBackend.Domain.Interfaces
+namespace AglixBackend.Application.Interfaces
 {
-    public interface IAgileImplementationRepository
+    public interface IAgileImplementationService
     {
         Task<IEnumerable<AgileImplementation>> GetAllAsync();
         Task<AgileImplementation> GetByIdAsync(int id);

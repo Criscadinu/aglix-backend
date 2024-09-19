@@ -46,7 +46,33 @@ namespace AglixBackend.Infrastructure.Migrations
                     b.ToTable("Agile");
                 });
 
-            modelBuilder.Entity("AglixBackend.Domain.Entities.AgileElement", b =>
+            modelBuilder.Entity("AglixBackend.Domain.Entities.AgileImplementation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AgileId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgileId");
+
+                    b.ToTable("AgileImplementation");
+                });
+
+            modelBuilder.Entity("AglixBackend.Domain.Entities.AgileImplementationElement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,31 +104,16 @@ namespace AglixBackend.Infrastructure.Migrations
 
             modelBuilder.Entity("AglixBackend.Domain.Entities.AgileImplementation", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.HasOne("AglixBackend.Domain.Entities.Agile", "Agile")
+                        .WithMany("Implementations")
+                        .HasForeignKey("AgileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AgileId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgileId");
-
-                    b.ToTable("AgileImplementation");
+                    b.Navigation("Agile");
                 });
 
-            modelBuilder.Entity("AglixBackend.Domain.Entities.AgileElement", b =>
+            modelBuilder.Entity("AglixBackend.Domain.Entities.AgileImplementationElement", b =>
                 {
                     b.HasOne("AglixBackend.Domain.Entities.AgileImplementation", "AgileImplementation")
                         .WithMany("Elements")
@@ -111,17 +122,6 @@ namespace AglixBackend.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("AgileImplementation");
-                });
-
-            modelBuilder.Entity("AglixBackend.Domain.Entities.AgileImplementation", b =>
-                {
-                    b.HasOne("AglixBackend.Domain.Entities.Agile", "Agile")
-                        .WithMany("Implementations")
-                        .HasForeignKey("AgileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Agile");
                 });
 
             modelBuilder.Entity("AglixBackend.Domain.Entities.Agile", b =>
