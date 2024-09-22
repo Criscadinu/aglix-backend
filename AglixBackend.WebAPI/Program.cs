@@ -9,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
+    options.AddPolicy("AllowSpecificOrigins",
         builder =>
         {
-            builder.WithOrigins("https://localhost:7223") 
+            builder.WithOrigins("https://localhost:7223", "http://localhost:5246") 
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
@@ -28,8 +28,6 @@ builder.Services.AddScoped<IAgileService, AgileService>();
 builder.Services.AddScoped<IAgileImplementationService, AgileImplementationService>();
 builder.Services.AddScoped<IAgileImplementationRepository, AgileImplementationRepository>();
 
-
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -43,7 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowSpecificOrigins"); 
 
 app.UseAuthorization();
 
