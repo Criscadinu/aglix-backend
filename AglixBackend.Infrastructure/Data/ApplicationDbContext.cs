@@ -1,4 +1,5 @@
 ﻿using AglixBackend.Domain.Entities;
+using AglixBackend.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace AglixBackend.Infrastructure.Data
@@ -11,7 +12,7 @@ namespace AglixBackend.Infrastructure.Data
 
         public DbSet<Agile> Agile { get; set; }
         public DbSet<AgileImplementation> AgileImplementation { get; set; }
-        public DbSet<AgileImplementationElement> AgileElement { get; set; }
+        public DbSet<AgileImplementationElement> AgileImplementationElement { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -27,6 +27,8 @@ builder.Services.AddScoped<IAgileRepository, AgileRepository>();
 builder.Services.AddScoped<IAgileService, AgileService>();
 builder.Services.AddScoped<IAgileImplementationService, AgileImplementationService>();
 builder.Services.AddScoped<IAgileImplementationRepository, AgileImplementationRepository>();
+builder.Services.AddScoped<IAgileImplementationElementService, AgileImplementationElementService>();
+builder.Services.AddScoped<IAgileImplementationElementRepository, AgileImplementationElementRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

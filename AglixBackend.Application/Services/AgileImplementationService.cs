@@ -37,5 +37,6 @@ namespace AglixBackend.Application.Services
         {
             await _repository.DeleteAsync(id);
         }
+
     }
 }
